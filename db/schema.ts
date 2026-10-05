@@ -88,7 +88,7 @@ export const focusSessions = pgTable('focus_sessions', {
 ]);
 
 // --- DATABASE VIEW ---
-export const focusSessionsAnalytics = pgView("focus_sessions_analytics").as((qb) => 
+export const focusSessionsAnalytics = pgView("focus_sessions_analytics").with({securityInvoker:true}).as((qb) => 
     qb.select()
       .from(focusSessions)
       .where(sql`session_type = 'focus' AND status = 'completed'`)

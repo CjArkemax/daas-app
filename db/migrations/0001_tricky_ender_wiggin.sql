@@ -1,0 +1,1 @@
+ALTER VIEW "public"."focus_sessions_analytics" SET (security_invoker = true);
