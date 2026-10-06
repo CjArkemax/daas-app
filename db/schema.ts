@@ -36,7 +36,7 @@ export const projects = pgTable('projects', {
     createdAt: timestamp("created_at", { withTimezone: true }).notNull().defaultNow(),
     updatedAt: timestamp("updated_at", { withTimezone: true }).notNull().defaultNow()
 },(table)=> [
-    check("projects_status_check", sql`status IN ('active', 'archived')`)
+    check("projects_status_check", sql`${table.status} IN ('active', 'archived')`)
 ]);
 
 // 3. TASKS
