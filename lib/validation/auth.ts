@@ -12,3 +12,37 @@ export const loginSchema = z.object({
 })
 export type LoginInput = z.infer<typeof loginSchema>
 
+
+// console.log(parsed);
+
+// {
+//   success: true,
+//   data: {
+//     email: "user@example.com",
+//     password: "securePassword123"
+//   }
+// }
+
+
+// console.log(parsed);
+
+// {
+//   success: false,
+//   error: ZodError: [
+//     {
+//       "code": "invalid_string",
+//       "validation": "email",
+//       "message": "Invalid email",
+//       "path": [ "email" ]
+//     },
+//     {
+//       "code": "too_small",
+//       "minimum": 8,
+//       "type": "string",
+//       "inclusive": true,
+//       "exact": false,
+//       "message": "String must contain at least 8 character(s)",
+//       "path": [ "password" ]
+//     }
+//   ]
+// }
