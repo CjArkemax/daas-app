@@ -1,4 +1,5 @@
-"use server"
+"use server";
+
 import { db } from "@/db";
 import { projects } from "@/db/schema";
 import { requireUser } from "@/lib/auth/requireUser";

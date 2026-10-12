@@ -8,7 +8,8 @@ export default async function ProjectsPage(){
         // console.log(user)
         
         const projectList = await listProjectsForUser(user.id);
-    
+        // console.log(projectList);
+        
     return(
         <div className="p-8">
             <h1 className="text-2xl mb-4">Projects</h1>

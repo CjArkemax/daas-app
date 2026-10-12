@@ -1,18 +1,12 @@
-import { createServerSupabaseClient } from "@/lib/supabase/server";
-import { cookies } from "next/headers";
 import Link from "next/link";
 import { LogoutButton } from "@/components/logout-button";
+import { getCachedUser } from "@/lib/auth/cached-user";
 
 
 
 export default async function NavBar(){
-    const cookieStore = await cookies()
-    const supabase = createServerSupabaseClient(cookieStore)
-    const {data:{user}} = await supabase.auth.getUser()
-
-    if(!user){
-        return null
-    }
+ const user = await getCachedUser();
+  if (!user) return null;
     return(
         <nav className="flex gap-6 px-4">
             <Link href="/dashboard">Dashboard</Link>

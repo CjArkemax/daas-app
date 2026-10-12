@@ -1,17 +1,11 @@
-import "server-only";
-import type {User} from "@supabase/supabase-js";
-import {cookies} from "next/headers";
-import {createServerSupabaseClient} from "@/lib/supabase/server";
+import 'server-only';
+import type { User } from '@supabase/supabase-js';
+import { getCachedUser } from './cached-user';
 
 export async function requireUser(): Promise<User> {
-
-    const cookieStore = await cookies();
-    const supabase = createServerSupabaseClient(cookieStore);
-    const {data: {user}} = await supabase.auth.getUser();
-
-    if(!user){
-        throw new Error("Unauthorized");
-    }
-
-    return user;   
+  const user = await getCachedUser();
+  if (!user) {
+    throw new Error('Unauthorized');
+  }
+  return user;
 }
