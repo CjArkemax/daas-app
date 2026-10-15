@@ -6,6 +6,7 @@ import NewTaskForm from "./_components/new-task-form";
 import Link from "next/link";
 import { TaskCompleteButton } from "./_components/task-complete-button";
 import { completeTask } from "@/actions/tasks";
+import StartTimerButtons from "@/components/timer/StartTimerButtons";
 
 
 
@@ -38,14 +39,24 @@ export default async function ProjectPage({params}:{params:Promise<{id:string}>}
             {pending.length > 0 && (
             <ul className="space-y-2 mt-6">
                 {pending.map((task) => (
-                <li key={task.id}>
-                    <form action={completeTask}>
-                    <input type="hidden" name="taskId" value={task.id} />
-                    <span>{task.title}</span>
-                    <TaskCompleteButton />
-                    </form>
-                </li>
-                ))}
+                    <li key={task.id}>
+                        <div className="flex items-center justify-between gap-2">
+                        <span>{task.title}</span>
+                        <div className="flex items-center gap-1">
+                            <StartTimerButtons
+                                projectId={project.id}
+                                projectName={project.name}
+                                taskId={task.id}
+                                taskTitle={task.title}
+                            />
+                            <form action={completeTask}>
+                            <input type="hidden" name="taskId" value={task.id} />
+                            <TaskCompleteButton />
+                            </form>
+                        </div>
+                        </div>
+                    </li>
+                    ))}
             </ul>
             )}
 
