@@ -44,3 +44,9 @@ next-env.d.ts
 
 #migrations
 migrate.ts
+
+# testing
+/coverage
+/playwright-report
+/test-results
+playwright/.cache

@@ -30,7 +30,7 @@ export default async function DashboardPage() {
         {todaySessions.length === 0 ? (
           <p>No sessions yet.</p>
         ) : (
-          <SessionList sessions={todaySessions} />
+          <SessionList sessions={todaySessions} timezone={timezone} />
         )}
       </section>
     </div>
