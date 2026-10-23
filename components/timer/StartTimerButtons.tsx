@@ -31,7 +31,7 @@ export default function StartTimerButtons ({
     }
       return (
     <div className="flex gap-1">
-      <Button variant="ghost" size="sm" disabled={status === "running"} onClick={() => handleClick(0.5)}>
+      <Button variant="ghost" size="sm" disabled={status === "running"} onClick={() => handleClick(0.1)}>
         25
       </Button>
       <Button variant="ghost" size="sm" disabled={status === "running"} onClick={() => handleClick(5)}>

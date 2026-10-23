@@ -38,12 +38,14 @@ export default function GlobalTimer() {
         return () => clearInterval(id);
     }, [status, startedAt]);
 
+    //Display the timer in both full and minimised screen 
     useEffect(() => {
         document.title = status === 'running'
         ? `${formatDuration(remaining)} — DAAS`
         : 'DAAS';
     }, [status, remaining]);
 
+    //completion use effect hook
     useEffect(() => {
         if (status !== 'running') return;
         if (remaining > 0) return;
@@ -67,12 +69,16 @@ export default function GlobalTimer() {
         plannedSeconds: s.plannedSeconds,
         };
     }
+    async function handleCompletion() {
+        const payload = buildPayload();
+        if (!payload) return;
 
-    function handleDone() {
-        hasFiredRef.current = false;
-        setSaveState('idle');
-        setMinimized(false);
-        useTimerStore.getState().reset();
+        playBell();
+        setSaveState('saving');
+        useTimerStore.setState({ status: 'completed' });
+
+        const result = await saveFocusSession(payload);
+        setSaveState(result.success ? 'saved' : 'error');
     }
 
     async function handleStop() {
@@ -99,16 +105,11 @@ export default function GlobalTimer() {
         useTimerStore.getState().reset();
     }
 
-    async function handleCompletion() {
-        const payload = buildPayload();
-        if (!payload) return;
-
-        playBell();
-        setSaveState('saving');
-        useTimerStore.setState({ status: 'completed' });
-
-        const result = await saveFocusSession(payload);
-        setSaveState(result.success ? 'saved' : 'error');
+    function handleDone() {
+        hasFiredRef.current = false;
+        setSaveState('idle');
+        setMinimized(false);
+        useTimerStore.getState().reset();
     }
 
     async function handleRetry() {
