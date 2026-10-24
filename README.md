@@ -6,7 +6,7 @@ DAAS is a personal execution-tracking application that records focused work sess
 
 Most productivity tools are just planners. DAAS is a measurement tool. It tracks the actual time you spend on tasks, generating a factual record of your day.
 
-## 🚀 Features (Phase 1 MVP)
+## 🚀 Features (Phase 1 MVP) completed
 
 - **Authentication:** Secure email/password auth via Supabase.
 - **Project & Task Management:** Organize your work into Projects and Tasks. 
