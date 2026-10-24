@@ -17,6 +17,10 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "DAAS",
   description: "Discipline as a Service — show what you actually did.",
+  icons: {
+    icon: "/icon.png", 
+},
+
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
